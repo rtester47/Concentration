@@ -1,7 +1,7 @@
 /* 
 *	Date: Oct 13, 2013
 *	Company: Spectre Games
-*	Web Address: http://www.spectregames.com">www.spectregames.com
+*	Web Address: http://www.spectregames.com
 * 
 *	Copyright 2013 Phantom Coder(Richard Tester)
 * 	Based on code from the following YouTube Channels:
