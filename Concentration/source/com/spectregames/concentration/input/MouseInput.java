@@ -69,6 +69,12 @@ public class MouseInput extends MouseAdapter {
                 case MENU:
                     if (rect.intersects(MainMenu.play)) // If we click our main menu's play button, change the games GameState to GAME.
                         Game.state = GameState.GAME;
+                    if (rect.intersects(MainMenu.options)) // If we click our main menu's options button, change the games GameState to OPTIONS.
+                        Game.state = GameState.OPTIONS;
+                    if (rect.intersects(MainMenu.instructions)) // If we click our main menu's instructions button, change the games GameState to INSTRUCTIONS.
+                        Game.state = GameState.INSTRUCTIONS;
+                    if (rect.intersects(MainMenu.scores)) // If we click our main menu's high scores button, change the games GameState to SCORES.
+                        Game.state = GameState.SCORES;
                     if (rect.intersects(MainMenu.quit)) // If we click our main menu's quit button, change the games GameState to QUITING.
                         Game.state = GameState.QUITTING;
                     break;
