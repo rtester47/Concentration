@@ -18,6 +18,13 @@ public class Images {
 	// Splash Screen Images.
 	public static BufferedImage splash_screen;
 	
+	// Cursor Images.
+	public static BufferedImage custom_normal_cursor;
+	public static BufferedImage custom_wait_cursos;
+	
+	// Icon Images.
+	public static BufferedImage program_icon;
+	
 	// Main Menu Images.
 	public static BufferedImage main_menu_background;
 	public static BufferedImage main_menu_title;

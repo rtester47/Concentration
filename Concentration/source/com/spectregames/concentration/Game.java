@@ -43,7 +43,7 @@ public class Game extends Canvas implements Runnable {
 	
 	public MainMenu menu;
 	public SplashScreen splash;
-	
+		
 	public static Game getInstance(){
 		return game;
 	}
@@ -131,12 +131,12 @@ public class Game extends Canvas implements Runnable {
 		
 		// Changes the default mouse cursor.
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		Image image = toolkit.getImage(Reference.CURSORS + "hand_cursor.gif");
+		Image image = toolkit.getImage("./assets/sprites/cursors/hand_cursor.gif");
 		Point hotSpot = new Point(0,0);
 		Cursor cursor = toolkit.createCustomCursor(image, hotSpot, "Hand");
 		
-		// Changes the default java program icon to a custom one.
-		Image icon = Toolkit.getDefaultToolkit().getImage(Reference.ICONS + "icon.png");
+		//Changes the default java program icon to a custom one.
+		Image icon = Toolkit.getDefaultToolkit().getImage("./assets/sprites/icons/icon.png");
 		
 		frame.add(game);
 		frame.setCursor(cursor);

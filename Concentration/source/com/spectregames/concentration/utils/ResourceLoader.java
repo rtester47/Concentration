@@ -22,6 +22,11 @@ public class ResourceLoader {
 	// Loads all of the games image assets.
 	public static void loadImages(){
 		
+		// Image for the normal cursor.
+		try{
+			Images.custom_normal_cursor = imageLoader.loadImage(Reference.CURSORS + "hand_cursor.gif");
+		} catch(IOException e){ e.printStackTrace(); }
+		
 		// Image for the SplashScreen.
 		try{
 			Images.splash_screen = imageLoader.loadImage(Reference.SPLASH + "splash.png");
