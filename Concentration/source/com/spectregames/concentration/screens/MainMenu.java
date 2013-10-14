@@ -44,21 +44,46 @@ public class MainMenu{
     	g.drawImage(Images.main_menu_high_scores_normal, scores.x - 3, scores.y - 9, null);
     	g.drawImage(Images.main_menu_quit_normal, quit.x - 2, quit.y - 12, null);
     	
-	    if(MouseInput.MOUSE.intersects(play)) // Changes the play image for the main menu when mouse hovers over it.
-	    	g.drawImage(Images.main_menu_play_hover, play.x - 3, play.y - 14, null); 
-	    if(MouseInput.MOUSE.intersects(options)) // Changes the options image for the main menu when mouse hovers over it.
+    	// Changes the play image for the main menu when mouse hovers over or has been pressed.
+	    if(MouseInput.MOUSE.intersects(play) && Reference.isPressed){ 
+	    	g.drawImage(Images.main_menu_play_pressed, play.x - 3, play.y - 9, null);
+	    }else if(MouseInput.MOUSE.intersects(play)){
+	    	g.drawImage(Images.main_menu_play_hover, play.x - 3, play.y - 14, null);
+	    }
+	    
+	    // Changes the options image for the main menu when mouse hovers over or has been pressed.
+	    if(MouseInput.MOUSE.intersects(options) && Reference.isPressed){ 
+	    	g.drawImage(Images.main_menu_options_pressed, options.x - 3, options.y - 7, null);
+	    }else if(MouseInput.MOUSE.intersects(options)){	
 	    	g.drawImage(Images.main_menu_options_hover, options.x - 11, options.y - 16, null);
-	    if(MouseInput.MOUSE.intersects(instructions)) // Changes the instructions image for the main menu when mouse hovers over it.
+		}
+	    
+	    // Changes the instructions image for the main menu when mouse hovers over or has been pressed.
+	    if(MouseInput.MOUSE.intersects(instructions)&& Reference.isPressed){
+	    	g.drawImage(Images.main_menu_instructions_pressed, instructions.x - 3, instructions.y - 10, null);
+	    }else if(MouseInput.MOUSE.intersects(instructions)){
 	    	g.drawImage(Images.main_menu_instructions_hover, instructions.x - 3, instructions.y - 18, null);
-	    if(MouseInput.MOUSE.intersects(scores)) // Changes the high scores image for the main menu when mouse hovers over it.
+	    }
+	    
+	    // Changes the high scores image for the main menu when mouse hovers over or has been pressed.
+	    if(MouseInput.MOUSE.intersects(scores) && Reference.isPressed){
+	    	g.drawImage(Images.main_menu_high_scores_pressed, scores.x - 3, scores.y - 9, null);
+	    }else if(MouseInput.MOUSE.intersects(scores)){
 			g.drawImage(Images.main_menu_high_scores_hover, scores.x - 11, scores.y - 18, null);
-	    if(MouseInput.MOUSE.intersects(quit)) // Changes the quit image for the main menu when mouse hovers over it.
+	    }
+	    
+	    // Changes the quit image for the main menu when mouse hovers over or has been pressed.
+	    if(MouseInput.MOUSE.intersects(quit) && Reference.isPressed){
+	    	g.drawImage(Images.main_menu_quit_pressed, quit.x - 2, quit.y - 12, null);
+	    }else if(MouseInput.MOUSE.intersects(quit)){
 			g.drawImage(Images.main_menu_quit_hover, quit.x - 2, quit.y - 20, null);
+	    }
 	}
 	
 	public void render(Graphics g){
 		
 		g.drawImage(Images.main_menu_background, 0, 0, Reference.WIDTH, Reference.HEIGHT, null);
+		g.drawImage(Images.main_menu_title, 0, 0, Reference.WIDTH, Reference.HEIGHT, null);
 		drawButton(g, play, "", 0);
 		drawButton(g, options, "", 0);
 		drawButton(g, instructions, "", 0);

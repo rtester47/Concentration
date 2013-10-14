@@ -28,6 +28,7 @@ import java.awt.event.MouseEvent;
 
 import com.spectregames.concentration.Game;
 import com.spectregames.concentration.enums.GameState;
+import com.spectregames.concentration.libs.Reference;
 import com.spectregames.concentration.screens.MainMenu;
 
 /**
@@ -58,35 +59,7 @@ public class MouseInput extends MouseAdapter {
      * This method is called whenever a mouse button is clicked
      */
     public void mouseClicked(MouseEvent e) {
-        int mouse = e.getButton();  //used to check what button was clicked
-        Rectangle rect = new Rectangle(e.getX(), e.getY(), 1, 1);  //creates a 1x1 rectangle around the cursor to be used to check where it was clicked
 
-        if (mouse == MouseEvent.BUTTON1) {  //only do this stuff if the left mouse button was clicked
-
-            switch (Game.state) {  //depending on what state the game is in, check for the following cases
-                case GAME:
-                    break;
-                case MENU:
-                    if (rect.intersects(MainMenu.play)) // If we click our main menu's play button, change the games GameState to GAME.
-                        Game.state = GameState.GAME;
-                    if (rect.intersects(MainMenu.options)) // If we click our main menu's options button, change the games GameState to OPTIONS.
-                        Game.state = GameState.OPTIONS;
-                    if (rect.intersects(MainMenu.instructions)) // If we click our main menu's instructions button, change the games GameState to INSTRUCTIONS.
-                        Game.state = GameState.INSTRUCTIONS;
-                    if (rect.intersects(MainMenu.scores)) // If we click our main menu's high scores button, change the games GameState to SCORES.
-                        Game.state = GameState.SCORES;
-                    if (rect.intersects(MainMenu.quit)) // If we click our main menu's quit button, change the games GameState to QUITING.
-                        Game.state = GameState.QUITTING;
-                    break;
-                case OPTIONS:
-                    break;
-                case PAUSE:
-                    break;
-                default:
-                    break;
-
-            }
-        }
     }
     
     @Override
@@ -97,7 +70,72 @@ public class MouseInput extends MouseAdapter {
         MOUSE_X = e.getX();
         MOUSE_Y = e.getY();
         MOUSE = new Rectangle(MOUSE_X, MOUSE_Y, 1, 1);
-        
+    }
+    
+    public void mousePressed(MouseEvent e){
+    	Reference.isPressed = true;
+ 
+    }
+    
+    public void mouseReleased(MouseEvent e){
+        int mouse = e.getButton();  //used to check what button was clicked
+        Rectangle rect = new Rectangle(e.getX(), e.getY(), 1, 1);  //creates a 1x1 rectangle around the cursor to be used to check where it was clicked
+
+        if (mouse == MouseEvent.BUTTON1) {  //only do this stuff if the left mouse button was clicked
+
+            switch (Game.state) {  //depending on what state the game is in, check for the following cases
+                case GAME:
+                    break;
+                case MENU:
+                	
+                	// If we released our mouse button while in the bounds main menu's play button, 
+                	// change the games GameState to GAME and set isPressed to false.
+                    if (rect.intersects(MainMenu.play)){
+                        Game.state = GameState.GAME;
+                        Reference.isPressed = false;
+                    }
+                    
+                    // If we released our mouse button while in the bounds main menu's options button, 
+                	// change the games GameState to OPTIONS and set isPressed to false.
+                    if (rect.intersects(MainMenu.options)){ 
+                    	Game.state = GameState.OPTIONS;
+                    	Reference.isPressed = false;
+                    }
+                    
+                    // If we released our mouse button while in the bounds main menu's instructions button, 
+                	// change the games GameState to INSTRUCTIONS and set isPressed to false.
+                    if (rect.intersects(MainMenu.instructions)){
+                        Game.state = GameState.INSTRUCTIONS;
+                        Reference.isPressed = false;
+                    }
+                    
+                    // If we released our mouse button while in the bounds main menu's high scores button, 
+                	// change the games GameState to SCORES and set isPressed to false.
+                    if (rect.intersects(MainMenu.scores)){
+                        Game.state = GameState.SCORES;
+                    	Reference.isPressed = false;
+            		}
+                    
+                    // If we released our mouse button while in the bounds main menu's quit button, 
+                	// change the games GameState to QUITTING and set isPressed to false.
+                    if (rect.intersects(MainMenu.quit)){
+                        Game.state = GameState.QUITTING;
+                    	Reference.isPressed = false;
+            		}
+                    
+                    break;
+                    
+                case OPTIONS:
+                    break;
+                    
+                case PAUSE:
+                    break;
+                    
+                default:
+                    break;
+
+            }
+        }
     }
 
 }

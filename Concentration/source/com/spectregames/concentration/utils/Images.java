@@ -20,16 +20,22 @@ public class Images {
 	
 	// Main Menu Images.
 	public static BufferedImage main_menu_background;
+	public static BufferedImage main_menu_title;
 	public static BufferedImage main_menu_play_hover;
 	public static BufferedImage main_menu_play_normal;
+	public static BufferedImage main_menu_play_pressed;
 	public static BufferedImage main_menu_options_hover;
 	public static BufferedImage main_menu_options_normal;
+	public static BufferedImage main_menu_options_pressed;
 	public static BufferedImage main_menu_instructions_hover;
 	public static BufferedImage main_menu_instructions_normal;
+	public static BufferedImage main_menu_instructions_pressed;
 	public static BufferedImage main_menu_high_scores_hover;
 	public static BufferedImage main_menu_high_scores_normal;
+	public static BufferedImage main_menu_high_scores_pressed;
 	public static BufferedImage main_menu_quit_hover;
 	public static BufferedImage main_menu_quit_normal;
+	public static BufferedImage main_menu_quit_pressed;
 	
 	// Options Menu Images.
 	

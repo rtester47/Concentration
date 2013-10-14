@@ -21,8 +21,9 @@ public class Reference {
 	
 	public static final String TITLE = "Concentration";
 	
-	public static final boolean isDevMode = true;
-	public static final boolean isDebugMode = false;
+	public static boolean isDevMode = true;
+	public static boolean isDebugMode = false;
+	public static boolean isPressed = false;
 	
 	// The root / base directory for all of the games assets.
 	public static final String BASE_ASSETS_DIR = "./assets/";
@@ -30,6 +31,8 @@ public class Reference {
 	// Directory structure for all images used in the game.
 	public static final String BASE_SPRITE_DIR = BASE_ASSETS_DIR + "sprites/";
 	public static final String GUI_SPRITES = BASE_SPRITE_DIR + "gui/";
+	public static final String MAINMENU = GUI_SPRITES + "main_menu/";
+	public static final String SPLASH = GUI_SPRITES + "splash_screen/";
 	public static final String THEMES = BASE_SPRITE_DIR + "themes/";
 	public static final String CURSORS = BASE_SPRITE_DIR + "cursors/";
 	public static final String ICONS = BASE_SPRITE_DIR + "icons/";
