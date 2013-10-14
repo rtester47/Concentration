@@ -93,35 +93,35 @@ public class MouseInput extends MouseAdapter {
                     if (rect.intersects(MainMenu.play)){
                         Game.state = GameState.GAME;
                         Reference.isPressed = false;
-                    }
+                    }else Reference.isPressed = false;
                     
                     // If we released our mouse button while in the bounds main menu's options button, 
                 	// change the games GameState to OPTIONS and set isPressed to false.
                     if (rect.intersects(MainMenu.options)){ 
                     	Game.state = GameState.OPTIONS;
                     	Reference.isPressed = false;
-                    }
+                    }else Reference.isPressed = false;
                     
                     // If we released our mouse button while in the bounds main menu's instructions button, 
                 	// change the games GameState to INSTRUCTIONS and set isPressed to false.
                     if (rect.intersects(MainMenu.instructions)){
                         Game.state = GameState.INSTRUCTIONS;
                         Reference.isPressed = false;
-                    }
+                    }else Reference.isPressed = false;
                     
                     // If we released our mouse button while in the bounds main menu's high scores button, 
                 	// change the games GameState to SCORES and set isPressed to false.
                     if (rect.intersects(MainMenu.scores)){
                         Game.state = GameState.SCORES;
                     	Reference.isPressed = false;
-            		}
+            		}else Reference.isPressed = false;
                     
                     // If we released our mouse button while in the bounds main menu's quit button, 
                 	// change the games GameState to QUITTING and set isPressed to false.
                     if (rect.intersects(MainMenu.quit)){
                         Game.state = GameState.QUITTING;
                     	Reference.isPressed = false;
-            		}
+            		}else Reference.isPressed = false;
                     
                     break;
                     
