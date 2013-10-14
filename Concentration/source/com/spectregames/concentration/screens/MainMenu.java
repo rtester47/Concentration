@@ -11,9 +11,9 @@ import com.spectregames.concentration.libs.Reference;
 import com.spectregames.concentration.utils.Images;
 
  /**
-  *  Project: Concentration
-  *  
-  *  Class: Menu
+  *  <strong>Project:</strong> Concentration
+  *  <strong>Package:</strong> com.spectregames.concentration.screens
+  *  <strong>Class:</strong> Menu
   *  
   *  @author Phantom Coder
   *	
