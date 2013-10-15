@@ -25,20 +25,21 @@ public class Reference {
 	public static boolean isDebugMode = false;
 	public static boolean isPressed = false;
 	
+	// The root / base directory for all of the games assets.
+	public static final String BASE_ASSETS_DIR = "./assets/";
+	 
 	// Directory structure for all images used in the game.
-	public static final String BASE_SPRITE_DIR = "/sprites/";
+	public static final String BASE_SPRITE_DIR = BASE_ASSETS_DIR + "sprites/";
 	public static final String GUI_SPRITES = BASE_SPRITE_DIR + "gui/";
 	public static final String MAINMENU = GUI_SPRITES + "main_menu/";
-	public static final String SPLASH = GUI_SPRITES + "splash_screen/";
+	public static final String SPLASH =  GUI_SPRITES + "splash_screen/";
 	public static final String THEMES = BASE_SPRITE_DIR + "themes/";
 	public static final String CURSORS = BASE_SPRITE_DIR + "cursors/";
 	public static final String ICONS = BASE_SPRITE_DIR + "icons/";
 	public static final String FONTS = BASE_SPRITE_DIR + "fonts/";
 	
-	
 	//Directory structure for all audio files used in the game.
 	public static final String BASE_AUDIO_DIR = "/audio/";
 	public static final String BGM = BASE_AUDIO_DIR + "bgm/";
 	public static final String SFX = BASE_AUDIO_DIR + "sfx/";
-	
 }
