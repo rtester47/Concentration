@@ -26,9 +26,12 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.sound.sampled.LineUnavailableException;
+
 import com.spectregames.concentration.Game;
 import com.spectregames.concentration.enums.GameState;
 import com.spectregames.concentration.libs.Reference;
+import com.spectregames.concentration.output.TickSound;
 import com.spectregames.concentration.screens.MainMenu;
 
 /**
@@ -70,10 +73,44 @@ public class MouseInput extends MouseAdapter {
         MOUSE_X = e.getX();
         MOUSE_Y = e.getY();
         MOUSE = new Rectangle(MOUSE_X, MOUSE_Y, 1, 1);
+     }
+    
+    public void mouseEntered(MouseEvent e){
+    	if (MouseInput.MOUSE.intersects(MainMenu.play))
+    		Reference.hasPlayedTickSound = false;
+    			new TickSound();
+				try {
+					TickSound.tick();
+				} catch (LineUnavailableException | InterruptedException e1) {
+					e1.printStackTrace();
+				}
+			
+    	if (MouseInput.MOUSE.intersects(MainMenu.options))
+    		Reference.hasPlayedTickSound = false;
+    	if (MouseInput.MOUSE.intersects(MainMenu.instructions))
+    		Reference.hasPlayedTickSound = false;
+    	if (MouseInput.MOUSE.intersects(MainMenu.scores))
+    		Reference.hasPlayedTickSound = false;
+    	if (MouseInput.MOUSE.intersects(MainMenu.quit))
+    		Reference.hasPlayedTickSound = false;
+    }
+    
+    public void mouseExited(MouseEvent e){
+    	if (MouseInput.MOUSE.intersects(MainMenu.play))
+    		Reference.hasPlayedTickSound = true;
+    	if (MouseInput.MOUSE.intersects(MainMenu.options))
+    		Reference.hasPlayedTickSound = true;
+    	if (MouseInput.MOUSE.intersects(MainMenu.instructions))
+    		Reference.hasPlayedTickSound = true;
+    	if (MouseInput.MOUSE.intersects(MainMenu.scores))
+    		Reference.hasPlayedTickSound = true;
+    	if (MouseInput.MOUSE.intersects(MainMenu.quit))
+    		Reference.hasPlayedTickSound = true;
     }
     
     public void mousePressed(MouseEvent e){
     	Reference.isPressed = true;
+    	Reference.hasPlayedClickSound = true;
  
     }
     

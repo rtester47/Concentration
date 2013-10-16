@@ -41,9 +41,13 @@ public class Reference {
 	
 	public static final String TITLE = "Concentration";
 	
+	public static float SAMPLE_RATE = 8000f;
+	
 	public static boolean isDevMode = true;
 	public static boolean isDebugMode = false;
 	public static boolean isPressed = false;
+	public static boolean hasPlayedTickSound = false;
+	public static boolean hasPlayedClickSound = false;
 	
 	// The root / base directory for all of the games assets.
 	public static final String BASE_ASSETS_DIR = "./assets/";
