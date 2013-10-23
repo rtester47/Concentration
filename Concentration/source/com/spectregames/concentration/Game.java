@@ -37,7 +37,7 @@ import javax.swing.JFrame;
 import com.spectregames.concentration.enums.GameState;
 import com.spectregames.concentration.gfx.Renderer;
 import com.spectregames.concentration.input.MouseInput;
-import com.spectregames.concentration.libs.Reference;
+import com.spectregames.concentration.libs.GameConstants;
 import com.spectregames.concentration.screens.MainMenu;
 import com.spectregames.concentration.screens.SplashScreen;
 import com.spectregames.concentration.utils.ResourceLoader;
@@ -54,7 +54,7 @@ import com.spectregames.concentration.utils.ResourceLoader;
  */
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = -1572409472404955765L;
-	private static JFrame frame= new JFrame(Reference.TITLE);
+	private static JFrame frame= new JFrame(GameConstants.TITLE);
 	private static Game game = new Game();
 	private boolean isRunning = false;
 	
@@ -93,7 +93,7 @@ public class Game extends Canvas implements Runnable {
 		
 		Graphics g = bs.getDrawGraphics();
 		g.setColor(new Color(6,0,40));
-		g.fillRect(0, 0, Reference.WIDTH, Reference.HEIGHT);
+		g.fillRect(0, 0, GameConstants.WIDTH, GameConstants.HEIGHT);
 		
 		///////////////////////////////////////////////////
 		gfx.renderBackground(g);
@@ -131,9 +131,9 @@ public class Game extends Canvas implements Runnable {
 			if (System.currentTimeMillis() - timer > 1000){
 				timer+=1000;
 				
-				//if (Reference.isDebugMode){
-					System.out.println("UDS: " + ticks + ", FPS: " + frames);
-					frame.setTitle(Reference.TITLE + "          " + ticks + " UDS, FPS: " + frames);
+				//if (GameConstants.isDebugMode){
+					//System.out.println("UDS: " + ticks + ", FPS: " + frames);
+					frame.setTitle(GameConstants.TITLE + "          " + ticks + " UDS, FPS: " + frames);
 				//}
 				
 			ticks=0;
@@ -146,23 +146,23 @@ public class Game extends Canvas implements Runnable {
 	public static void main(String[] args) {
 		
 		// Sets the game window size.
-		game.setPreferredSize(new Dimension(Reference.WIDTH, Reference.HEIGHT));
-		game.setMinimumSize(new Dimension(Reference.WIDTH, Reference.HEIGHT));
-		game.setMaximumSize(new Dimension(Reference.WIDTH, Reference.HEIGHT));
+		game.setPreferredSize(new Dimension(GameConstants.WIDTH, GameConstants.HEIGHT));
+		game.setMinimumSize(new Dimension(GameConstants.WIDTH, GameConstants.HEIGHT));
+		game.setMaximumSize(new Dimension(GameConstants.WIDTH, GameConstants.HEIGHT));
 		
 		// Changes the default mouse cursor.
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		Image image = toolkit.getImage(Reference.CURSORS + "hand_cursor.gif");
+		Image image = toolkit.getImage(GameConstants.CURSORS + "hand_cursor.gif");
 		Point hotSpot = new Point(0,0);
 		Cursor cursor = toolkit.createCustomCursor(image, hotSpot, "Hand");
 		
 		//Changes the default java program icon to a custom one.
-		Image icon = Toolkit.getDefaultToolkit().getImage(Reference.ICONS + "icon.png");
+		Image icon = Toolkit.getDefaultToolkit().getImage(GameConstants.ICONS + "icon.png");
 		
 		frame.add(game);
 		frame.setCursor(cursor);
 		frame.setIconImage(icon);
-		frame.setSize(Reference.WIDTH, Reference.HEIGHT);
+		frame.setSize(GameConstants.WIDTH, GameConstants.HEIGHT);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setFocusable(true);

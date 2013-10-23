@@ -24,8 +24,8 @@
 
 import java.awt.Graphics;
 
-import com.spectregames.concentration.libs.Reference;
-import com.spectregames.concentration.utils.Images;
+import com.spectregames.concentration.libs.GameConstants;
+import com.spectregames.concentration.libs.Images;
 
 
 /**
@@ -41,6 +41,6 @@ import com.spectregames.concentration.utils.Images;
 public class SplashScreen{
 	
 	public void render(Graphics g){
-		g.drawImage(Images.splash_screen, 0, 0, Reference.WIDTH, Reference.HEIGHT, null);
+		g.drawImage(Images.splash_screen, 0, 0, GameConstants.WIDTH, GameConstants.HEIGHT, null);
 	}
 }

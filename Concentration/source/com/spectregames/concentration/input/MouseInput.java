@@ -26,12 +26,9 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.sound.sampled.LineUnavailableException;
-
 import com.spectregames.concentration.Game;
 import com.spectregames.concentration.enums.GameState;
-import com.spectregames.concentration.libs.Reference;
-import com.spectregames.concentration.output.TickSound;
+import com.spectregames.concentration.libs.GameConstants;
 import com.spectregames.concentration.screens.MainMenu;
 
 /**
@@ -73,44 +70,41 @@ public class MouseInput extends MouseAdapter {
         MOUSE_X = e.getX();
         MOUSE_Y = e.getY();
         MOUSE = new Rectangle(MOUSE_X, MOUSE_Y, 1, 1);
-     }
+        
+        if (MouseInput.MOUSE.intersects(MainMenu.play) && GameConstants.isInBoundsOfPlayButton){
+        	//Do nothing.
+        }else if (!MouseInput.MOUSE.intersects(MainMenu.play) && !GameConstants.isInBoundsOfPlayButton){
+        	 GameConstants.hasPlayedTickSound = false;
+        
+        }else if (MouseInput.MOUSE.intersects(MainMenu.options) && GameConstants.isInBoundsOfOptionsButton){
+        	// Do nothing.
+    	}else if (!MouseInput.MOUSE.intersects(MainMenu.options) && !GameConstants.isInBoundsOfOptionsButton){
+        	 GameConstants.hasPlayedTickSound = false;
+        
+    	}else if (MouseInput.MOUSE.intersects(MainMenu.instructions) && GameConstants.isInBoundsOfInstructionsButton){
+        	//Do nothing.
+        }else if (!MouseInput.MOUSE.intersects(MainMenu.instructions) && !GameConstants.isInBoundsOfInstructionsButton){ 
+        	GameConstants.hasPlayedTickSound = false;
+        
+        }else if (MouseInput.MOUSE.intersects(MainMenu.scores) && GameConstants.isInBoundsOfScoresButton){
+        	//Do nothing.
+    	}else if (!MouseInput.MOUSE.intersects(MainMenu.scores) && !GameConstants.isInBoundsOfScoresButton){
+    		GameConstants.hasPlayedTickSound = false;
+        
+    	}else if (!MouseInput.MOUSE.intersects(MainMenu.quit) && !GameConstants.isInBoundsOfQuitButton){
+        	//Do nothing.
+		}else if (!MouseInput.MOUSE.intersects(MainMenu.quit) && !GameConstants.isInBoundsOfQuitButton)
+    		GameConstants.hasPlayedTickSound = false;
+       
+   }
     
-    public void mouseEntered(MouseEvent e){
-    	if (MouseInput.MOUSE.intersects(MainMenu.play))
-    		Reference.hasPlayedTickSound = false;
-    			new TickSound();
-				try {
-					TickSound.tick();
-				} catch (LineUnavailableException | InterruptedException e1) {
-					e1.printStackTrace();
-				}
-			
-    	if (MouseInput.MOUSE.intersects(MainMenu.options))
-    		Reference.hasPlayedTickSound = false;
-    	if (MouseInput.MOUSE.intersects(MainMenu.instructions))
-    		Reference.hasPlayedTickSound = false;
-    	if (MouseInput.MOUSE.intersects(MainMenu.scores))
-    		Reference.hasPlayedTickSound = false;
-    	if (MouseInput.MOUSE.intersects(MainMenu.quit))
-    		Reference.hasPlayedTickSound = false;
-    }
+   
     
-    public void mouseExited(MouseEvent e){
-    	if (MouseInput.MOUSE.intersects(MainMenu.play))
-    		Reference.hasPlayedTickSound = true;
-    	if (MouseInput.MOUSE.intersects(MainMenu.options))
-    		Reference.hasPlayedTickSound = true;
-    	if (MouseInput.MOUSE.intersects(MainMenu.instructions))
-    		Reference.hasPlayedTickSound = true;
-    	if (MouseInput.MOUSE.intersects(MainMenu.scores))
-    		Reference.hasPlayedTickSound = true;
-    	if (MouseInput.MOUSE.intersects(MainMenu.quit))
-    		Reference.hasPlayedTickSound = true;
-    }
+  
     
     public void mousePressed(MouseEvent e){
-    	Reference.isPressed = true;
-    	Reference.hasPlayedClickSound = true;
+    	GameConstants.isPressed = true;
+    	GameConstants.hasPlayedClickSound = true;
  
     }
     
@@ -129,36 +123,37 @@ public class MouseInput extends MouseAdapter {
                 	// change the games GameState to GAME and set isPressed to false.
                     if (rect.intersects(MainMenu.play)){
                         Game.state = GameState.GAME;
-                        Reference.isPressed = false;
-                    }else Reference.isPressed = false;
+                        GameConstants.isPressed = false;
+                    }else GameConstants.isPressed = false;
                     
                     // If we released our mouse button while in the bounds main menu's options button, 
                 	// change the games GameState to OPTIONS and set isPressed to false.
                     if (rect.intersects(MainMenu.options)){ 
                     	Game.state = GameState.OPTIONS;
-                    	Reference.isPressed = false;
-                    }else Reference.isPressed = false;
+                    	GameConstants.isPressed = false;
+                    }else GameConstants.isPressed = false;
                     
                     // If we released our mouse button while in the bounds main menu's instructions button, 
                 	// change the games GameState to INSTRUCTIONS and set isPressed to false.
                     if (rect.intersects(MainMenu.instructions)){
                         Game.state = GameState.INSTRUCTIONS;
-                        Reference.isPressed = false;
-                    }else Reference.isPressed = false;
+                        GameConstants.isPressed = false;
+                    }else GameConstants.isPressed = false;
                     
                     // If we released our mouse button while in the bounds main menu's high scores button, 
                 	// change the games GameState to SCORES and set isPressed to false.
                     if (rect.intersects(MainMenu.scores)){
                         Game.state = GameState.SCORES;
-                    	Reference.isPressed = false;
-            		}else Reference.isPressed = false;
+                    	GameConstants.isPressed = false;
+            		}else GameConstants.isPressed = false;
                     
                     // If we released our mouse button while in the bounds main menu's quit button, 
                 	// change the games GameState to QUITTING and set isPressed to false.
                     if (rect.intersects(MainMenu.quit)){
-                        Game.state = GameState.QUITTING;
-                    	Reference.isPressed = false;
-            		}else Reference.isPressed = false;
+                       // Game.state = GameState.QUITTING;
+                    	GameConstants.isPressed = false;
+                    	System.exit(1);
+            		}else GameConstants.isPressed = false;
                     
                     break;
                     

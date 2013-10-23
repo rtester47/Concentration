@@ -29,7 +29,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 
-import com.spectregames.concentration.libs.Reference;
+import com.spectregames.concentration.libs.GameConstants;
 
 /**
  * Project Name: Concentration
@@ -56,7 +56,7 @@ public class TickSound extends Thread {
 	 */
 	  public static void tick() throws LineUnavailableException, InterruptedException {
 		    AudioFormat af = new AudioFormat(
-	          Reference.SAMPLE_RATE, // sampleRate
+	          GameConstants.SAMPLE_RATE, // sampleRate
 	          8,           // sampleSizeInBits
 	          1,           // channels
 	          true,        // signed

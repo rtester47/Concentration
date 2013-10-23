@@ -27,7 +27,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import com.spectregames.concentration.Game;
-import com.spectregames.concentration.libs.Reference;
+import com.spectregames.concentration.libs.GameConstants;
 
 /**
  *	Project: Concentration
@@ -64,7 +64,7 @@ public class Renderer {
 			case SCORES:
 				break;
 			case SPLASH:
-				if (!Reference.isDevMode){
+				if (!GameConstants.isDevMode){
 					Game.getInstance().splash.render(g);    
 					break;
 				}
@@ -73,7 +73,7 @@ public class Renderer {
 				Font tempFont = new Font("Arial", Font.BOLD, 45);
 				g.setFont(tempFont);
 				g.setColor(Color.RED);
-				g.drawString("UNKNOWN GAMESTATE", Reference.CENTER_X -275, Reference.CENTER_Y);
+				g.drawString("UNKNOWN GAMESTATE", GameConstants.CENTER_X -275, GameConstants.CENTER_Y);
 				break;
 			}
 	}

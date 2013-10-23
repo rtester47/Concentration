@@ -43,6 +43,7 @@ public class BufferedImageLoader {
 	
 	public BufferedImage loadImage(String imagePath) throws IOException{
 		image = ImageIO.read(new File(imagePath));
+		//image = ImageIO.read(this.getClass().getResourceAsStream(imagePath));
 		return image;
 	}
 
