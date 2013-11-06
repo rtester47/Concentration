@@ -27,6 +27,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import com.spectregames.concentration.Game;
+import com.spectregames.concentration.enums.GameState;
 import com.spectregames.concentration.libs.Audio;
 import com.spectregames.concentration.libs.GameConstants;
 import com.spectregames.concentration.utils.AudioPlayer;
@@ -168,37 +169,37 @@ public class MouseInput extends MouseAdapter {
                 	// If we released our mouse button while in the bounds main menu's play button, 
                 	// change the games GameState to GAME and set isPressed to false.
                     if (rect.intersects(Game.getInstance().getMenu().play)){
-                       // Game.state = GameState.GAME;
+                        Game.state = GameState.GAME;
                         GameConstants.isPressed = false;
                     }else GameConstants.isPressed = false;
                     
                     // If we released our mouse button while in the bounds main menu's options button, 
                 	// change the games GameState to OPTIONS and set isPressed to false.
                     if (rect.intersects(Game.getInstance().getMenu().options)){ 
-                    	//Game.state = GameState.OPTIONS;
+                    	Game.state = GameState.OPTIONS;
                     	GameConstants.isPressed = false;
                     }else GameConstants.isPressed = false;
                     
                     // If we released our mouse button while in the bounds main menu's instructions button, 
                 	// change the games GameState to INSTRUCTIONS and set isPressed to false.
                     if (rect.intersects(Game.getInstance().getMenu().instructions)){
-                        //Game.state = GameState.INSTRUCTIONS;
+                        Game.state = GameState.INSTRUCTIONS;
                         GameConstants.isPressed = false;
                     }else GameConstants.isPressed = false;
                     
                     // If we released our mouse button while in the bounds main menu's high scores button, 
                 	// change the games GameState to SCORES and set isPressed to false.
                     if (rect.intersects(Game.getInstance().getMenu().scores)){
-                        //Game.state = GameState.SCORES;
+                        Game.state = GameState.SCORES;
                     	GameConstants.isPressed = false;
             		}else GameConstants.isPressed = false;
                     
                     // If we released our mouse button while in the bounds main menu's quit button, 
                 	// change the games GameState to QUITTING and set isPressed to false.
                     if (rect.intersects(Game.getInstance().getMenu().quit)){
-                       // Game.state = GameState.QUITTING;
+                        Game.state = GameState.QUITTING;
                     	GameConstants.isPressed = false;
-                    	//System.exit(1);
+                    	System.exit(1);
             		}else GameConstants.isPressed = false;
                     
                     break;

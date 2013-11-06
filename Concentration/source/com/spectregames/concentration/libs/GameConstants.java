@@ -39,9 +39,10 @@ public class GameConstants {
 	public static final int CENTER_X = WIDTH / 2;
 	public static final int CENTER_Y = HEIGHT / 2;
 	
-	public static final String TITLE = "Concentration";
+	public static int cardsToDraw = 12;
 	
-	public static float SAMPLE_RATE = 8000f;
+	public static final String TITLE = "Concentration";
+		
 	
 	public static boolean isDevMode = true;
 	public static boolean isDebugMode = false;

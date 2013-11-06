@@ -27,6 +27,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import com.spectregames.concentration.Game;
+import com.spectregames.concentration.enums.GameState;
 import com.spectregames.concentration.libs.GameConstants;
 
 /**
@@ -45,12 +46,48 @@ public class Renderer {
 		switch(Game.state){
 			case CREDITS:
 				break;
+			case EASY_GAME:
+				System.out.println("I will randomly draw " + GameConstants.cardsToDraw + " cards for you.");
+				break;
+			case EXTREME_GAME:
+				System.out.println("I will draw " + GameConstants.cardsToDraw + " cards for you.");
+				break;	
 			case GAME:
+				switch(Game.difficulity){
+				case EASY:
+					GameConstants.cardsToDraw = 6;
+					Game.state = GameState.EASY_GAME;
+					break;
+				case EXTREME:
+					GameConstants.cardsToDraw = 24;
+					Game.state = GameState.EXTREME_GAME;
+					break;
+				case HARD:
+					GameConstants.cardsToDraw = 18;
+					Game.state = GameState.HARD_GAME;
+					break;
+				case NORMAL:
+					GameConstants.cardsToDraw = 12;
+					Game.state = GameState.NORMAL_GAME;
+					break;
+				default:
+					Font tempFont = new Font("Arial", Font.BOLD, 45);
+					g.setFont(tempFont);
+					g.setColor(Color.RED);
+					g.drawString("UNKNOWN GAMEDIFFICULITY", GameConstants.CENTER_X -275, GameConstants.CENTER_Y);
+					break;
+				}
+				break;
+			case HARD_GAME:
+				System.out.println("I will randomly draw " + GameConstants.cardsToDraw + " cards for you.");
 				break;
 			case INSTRUCTIONS:
 				break;
 			case MENU:
 				Game.getInstance().getMenu().render(g);
+				break;
+			case NORMAL_GAME:
+				System.out.println("I will randomly draw " + GameConstants.cardsToDraw + " cards for you.");
 				break;
 			case OPTIONS:
 				break;

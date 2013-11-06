@@ -33,6 +33,7 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import com.spectregames.concentration.enums.GameDifficulity;
 import com.spectregames.concentration.enums.GameState;
 import com.spectregames.concentration.gfx.Renderer;
 import com.spectregames.concentration.input.MouseInput;
@@ -56,6 +57,7 @@ public class Game extends Canvas implements Runnable {
 	private static JFrame frame= new JFrame();
 	private static Game game = new Game();
 	public static GameState state = GameState.MENU;
+	public static GameDifficulity difficulity = GameDifficulity.EXTREME;
 	
 	private boolean isRunning = false;
 	private Thread game_thread;
