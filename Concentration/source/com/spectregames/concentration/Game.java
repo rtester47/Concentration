@@ -57,7 +57,7 @@ public class Game extends Canvas implements Runnable {
 	private static JFrame frame= new JFrame();
 	private static Game game = new Game();
 	public static GameState state = GameState.MENU;
-	public static GameDifficulity difficulity = GameDifficulity.EXTREME;
+	public static GameDifficulity difficulity = GameDifficulity.NORMAL;
 	
 	private boolean isRunning = false;
 	private Thread game_thread;

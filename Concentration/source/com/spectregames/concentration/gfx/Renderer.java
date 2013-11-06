@@ -43,14 +43,19 @@ import com.spectregames.concentration.libs.GameConstants;
 public class Renderer {
 	
 	public void renderBackground(Graphics g){
+		Font tempFont = new Font("Arial", Font.BOLD, 44);
 		switch(Game.state){
 			case CREDITS:
 				break;
 			case EASY_GAME:
-				System.out.println("I will randomly draw " + GameConstants.cardsToDraw + " cards for you.");
+				g.setFont(tempFont);
+				g.setColor(Color.RED);
+				g.drawString("06 CARDS WILL BE DRAWN FOR YOU", GameConstants.CENTER_X -400, GameConstants.CENTER_Y);
 				break;
 			case EXTREME_GAME:
-				System.out.println("I will draw " + GameConstants.cardsToDraw + " cards for you.");
+				g.setFont(tempFont);
+				g.setColor(Color.RED);
+				g.drawString("24 CARDS WILL BE DRAWN FOR YOU", GameConstants.CENTER_X -400, GameConstants.CENTER_Y);
 				break;	
 			case GAME:
 				switch(Game.difficulity){
@@ -71,15 +76,15 @@ public class Renderer {
 					Game.state = GameState.NORMAL_GAME;
 					break;
 				default:
-					Font tempFont = new Font("Arial", Font.BOLD, 45);
 					g.setFont(tempFont);
 					g.setColor(Color.RED);
-					g.drawString("UNKNOWN GAMEDIFFICULITY", GameConstants.CENTER_X -275, GameConstants.CENTER_Y);
+					g.drawString("UNKNOWN GAMEDIFFICULITY", GameConstants.CENTER_X -400, GameConstants.CENTER_Y);
 					break;
 				}
 				break;
 			case HARD_GAME:
-				System.out.println("I will randomly draw " + GameConstants.cardsToDraw + " cards for you.");
+				g.setColor(Color.RED);
+				g.drawString("18 CARDS WILL BE DRAWN FOR YOU", GameConstants.CENTER_X -400, GameConstants.CENTER_Y);
 				break;
 			case INSTRUCTIONS:
 				break;
@@ -87,7 +92,9 @@ public class Renderer {
 				Game.getInstance().getMenu().render(g);
 				break;
 			case NORMAL_GAME:
-				System.out.println("I will randomly draw " + GameConstants.cardsToDraw + " cards for you.");
+				g.setFont(tempFont);
+				g.setColor(Color.RED);
+				g.drawString("12 CARDS WILL BE DRAWN FOR YOU", GameConstants.CENTER_X -400, GameConstants.CENTER_Y);
 				break;
 			case OPTIONS:
 				break;
@@ -107,7 +114,6 @@ public class Renderer {
 				}
 				break;
 			default:
-				Font tempFont = new Font("Arial", Font.BOLD, 45);
 				g.setFont(tempFont);
 				g.setColor(Color.RED);
 				g.drawString("UNKNOWN GAMESTATE", GameConstants.CENTER_X -275, GameConstants.CENTER_Y);
