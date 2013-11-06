@@ -50,7 +50,7 @@ public class Renderer {
 			case INSTRUCTIONS:
 				break;
 			case MENU:
-				Game.getInstance().menu.render(g);
+				Game.getInstance().getMenu().render(g);
 				break;
 			case OPTIONS:
 				break;

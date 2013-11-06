@@ -47,42 +47,21 @@ public class ResourceLoader {
 		
 		// Image for the normal cursor.
 		try{
-			Images.custom_normal_cursor = imageLoader.loadImage(GameConstants.CURSORS + "hand_cursor.gif");
-		} catch(IOException e){ e.printStackTrace(); }
-		
-		// Image for the SplashScreen.
-		try{
+			// Images for the Splash Screens
 			Images.splash_screen = imageLoader.loadImage(GameConstants.SPLASH + "splash.png");
-		} catch(IOException e){ e.printStackTrace(); }
-		
-		// Images for the Main Menu.
-		try{
-			Images.main_menu_background = imageLoader.loadImage(GameConstants.MAINMENU + "main_menu.png");
-		} catch(IOException e){ e.printStackTrace(); }
-		
-		try{
-			Images.main_menu_title = imageLoader.loadImage(GameConstants.MAINMENU + "main_menu_title.png");
-		} catch(IOException e){ e.printStackTrace(); }
-		
-		try{
-			Images.main_menu_play_hover = imageLoader.loadImage(GameConstants.MAINMENU + "play_hover_state.png");
-		} catch(IOException e){ e.printStackTrace(); }
-		
-		try{
+
+			
+			// Images for the Main Menu.
+			Images.main_menu_title = imageLoader.loadImage(GameConstants.MAINMENU + "main_menu_title.png"); // Title Image
+			Images.main_menu_background = imageLoader.loadImage(GameConstants.MAINMENU + "main_menu.png"); // Background Image for main menu.
+			Images.main_menu_play_hover = imageLoader.loadImage(GameConstants.MAINMENU + "play_hover_state.png"); // Play Hover Image
 			Images.main_menu_play_normal = imageLoader.loadImage(GameConstants.MAINMENU + "play_normal_state.png");
-		} catch(IOException e){ e.printStackTrace(); }
-		
-		try{
 			Images.main_menu_play_pressed = imageLoader.loadImage(GameConstants.MAINMENU + "play_pressed_state.png");
-		} catch(IOException e){ e.printStackTrace(); }
-		
-		try{
 			Images.main_menu_options_hover = imageLoader.loadImage(GameConstants.MAINMENU + "options_hover_state.png");
+			Images.main_menu_options_normal = imageLoader.loadImage(GameConstants.MAINMENU + "options_normal_state.png");
+			
 		} catch(IOException e){ e.printStackTrace(); }
 		
-		try{
-			Images.main_menu_options_normal = imageLoader.loadImage(GameConstants.MAINMENU + "options_normal_state.png");
-		} catch(IOException e){ e.printStackTrace(); }
 		
 		try{
 			Images.main_menu_options_pressed = imageLoader.loadImage(GameConstants.MAINMENU + "options_pressed_state.png");
@@ -130,13 +109,13 @@ public class ResourceLoader {
 		
 		
 		//Sound Effects.
-        AudioPlayer.addSound(Audio.SFX_APPLAUSE, "applause.oog");
-        AudioPlayer.addSound(Audio.SFX_CLICK, "button_click.oog");
-        AudioPlayer.addSound(Audio.SFX_HOVER, "mouse_over.oog");
-        AudioPlayer.addSound(Audio.SFX_FLIP, "card_flip.oog");
+        //AudioPlayer.addSound(Audio.SFX_APPLAUSE, "applause.aif");
+        AudioPlayer.addSound(Audio.SFX_CLICK, "button_click.aif");
+        AudioPlayer.addSound(Audio.SFX_HOVER, "mouse_over.aif");
+        //AudioPlayer.addSound(Audio.SFX_FLIP, "card_flip.aif");
         
-        // Background Music.
-        AudioPlayer.addMusic(Audio.BGM_HOTS, "heart_of_the_sea.ogg");
+       // Background Music.
+       //AudioPlayer.addMusic(Audio.BGM_HOTS, "heart_of_the_sea.aif");
     }
 
 }

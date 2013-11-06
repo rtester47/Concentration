@@ -75,7 +75,8 @@ public class GameConstants {
 	public static final String FONTS = BASE_SPRITE_DIR + "fonts/";
 	
 	//Directory structure for all audio files used in the game.
-	public static final String BASE_AUDIO_DIR = "/audio/";
+	public static final String BASE_AUDIO_DIR = BASE_ASSETS_DIR + "audio/";
 	public static final String BGM = BASE_AUDIO_DIR + "bgm/";
 	public static final String SFX = BASE_AUDIO_DIR + "sfx/";
+
 }

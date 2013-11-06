@@ -27,9 +27,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import com.spectregames.concentration.Game;
-import com.spectregames.concentration.enums.GameState;
+import com.spectregames.concentration.libs.Audio;
 import com.spectregames.concentration.libs.GameConstants;
-import com.spectregames.concentration.screens.MainMenu;
+import com.spectregames.concentration.utils.AudioPlayer;
 
 /**
  *	Project: Concentration
@@ -44,69 +44,115 @@ import com.spectregames.concentration.screens.MainMenu;
 
 public class MouseInput extends MouseAdapter {
     
-    /**
-     * The x and y coords of the mouse
-     */
     public static int MOUSE_X, MOUSE_Y;
-    
-    /**
-     * Used to check for intersection in other classes <br> set to a 1x1 at location (1,1) by default, to avoid a NullPointerException
-     */
     public static Rectangle MOUSE = new Rectangle(1,1,1,1);
-
-    
-    /**
-     * This method is called whenever a mouse button is clicked
-     */
+  
+ 
+    @Override
     public void mouseClicked(MouseEvent e) {
-
     }
+
     
     @Override
-    /**
-     * This is called whenever the mouse is moved
-     */
     public void mouseMoved(MouseEvent e) {
-        MOUSE_X = e.getX();
+        
+    	MOUSE_X = e.getX();
         MOUSE_Y = e.getY();
         MOUSE = new Rectangle(MOUSE_X, MOUSE_Y, 1, 1);
-        
-        if (MouseInput.MOUSE.intersects(MainMenu.play) && GameConstants.isInBoundsOfPlayButton){
-        	//Do nothing.
-        }else if (!MouseInput.MOUSE.intersects(MainMenu.play) && !GameConstants.isInBoundsOfPlayButton){
-        	 GameConstants.hasPlayedTickSound = false;
-        
-        }else if (MouseInput.MOUSE.intersects(MainMenu.options) && GameConstants.isInBoundsOfOptionsButton){
-        	// Do nothing.
-    	}else if (!MouseInput.MOUSE.intersects(MainMenu.options) && !GameConstants.isInBoundsOfOptionsButton){
-        	 GameConstants.hasPlayedTickSound = false;
-        
-    	}else if (MouseInput.MOUSE.intersects(MainMenu.instructions) && GameConstants.isInBoundsOfInstructionsButton){
-        	//Do nothing.
-        }else if (!MouseInput.MOUSE.intersects(MainMenu.instructions) && !GameConstants.isInBoundsOfInstructionsButton){ 
-        	GameConstants.hasPlayedTickSound = false;
-        
-        }else if (MouseInput.MOUSE.intersects(MainMenu.scores) && GameConstants.isInBoundsOfScoresButton){
-        	//Do nothing.
-    	}else if (!MouseInput.MOUSE.intersects(MainMenu.scores) && !GameConstants.isInBoundsOfScoresButton){
-    		GameConstants.hasPlayedTickSound = false;
-        
-    	}else if (!MouseInput.MOUSE.intersects(MainMenu.quit) && !GameConstants.isInBoundsOfQuitButton){
-        	//Do nothing.
-		}else if (!MouseInput.MOUSE.intersects(MainMenu.quit) && !GameConstants.isInBoundsOfQuitButton)
-    		GameConstants.hasPlayedTickSound = false;
-       
-   }
-    
-   
-    
-  
-    
-    public void mousePressed(MouseEvent e){
-    	GameConstants.isPressed = true;
-    	GameConstants.hasPlayedClickSound = true;
- 
+
+        switch (Game.state) {
+		case CREDITS:
+			break;
+		case GAME:
+			break;
+		case INSTRUCTIONS:
+			break;
+		case MENU:
+            if ((MOUSE.intersects(Game.getInstance().getMenu().play)           //Only do this if the mouse is hovering over a button and the sound has not already played
+                    || MOUSE.intersects(Game.getInstance().getMenu().options)
+                    || MOUSE.intersects(Game.getInstance().getMenu().instructions)
+                    || MOUSE.intersects(Game.getInstance().getMenu().scores)
+                    || MOUSE.intersects(Game.getInstance().getMenu().quit))
+                    && !GameConstants.hasPlayedTickSound) {
+                
+                AudioPlayer.playSound(Audio.SFX_HOVER);
+                GameConstants.hasPlayedTickSound = true;  //The sound has played, so lets set it to true
+                
+            }else if(!(MOUSE.intersects(Game.getInstance().getMenu().play)    //If the mouse is not hovering over a button, then reset the boolean to false
+                    || MOUSE.intersects(Game.getInstance().getMenu().options)
+                    || MOUSE.intersects(Game.getInstance().getMenu().instructions)
+                    || MOUSE.intersects(Game.getInstance().getMenu().scores)
+                    || MOUSE.intersects(Game.getInstance().getMenu().quit))
+                    && GameConstants.hasPlayedTickSound){
+                
+            	GameConstants.hasPlayedTickSound  = false;
+            }
+			break;
+		case OPTIONS:
+			break;
+		case PAUSE:
+			break;
+		case QUITTING:
+			break;
+		case SCORES:
+			break;
+		case SPLASH:
+			break;
+		default:
+			break;
+        }
     }
+ 
+  
+    @Override
+    public void mousePressed(MouseEvent e){
+    	
+    	GameConstants.isPressed = true;
+	    
+    	int mouse = e.getButton();
+	    Rectangle rect = new Rectangle(e.getX(), e.getY(), 1, 1); 
+    	
+	    if (mouse == MouseEvent.BUTTON1) {   		
+    		switch (Game.state){
+			case CREDITS:
+				break;
+			case GAME:
+				break;
+			case INSTRUCTIONS:
+				break;
+			case MENU:
+				if (rect.intersects(Game.getInstance().getMenu().play)) { //Example, if we click our menu's play button, change the state to GAME
+                    AudioPlayer.playSound(Audio.SFX_CLICK); //make sure you play your sound before changing the game's state
+                    
+                } else if (rect.intersects(Game.getInstance().getMenu().options)) {
+                    AudioPlayer.playSound(Audio.SFX_CLICK);
+                    
+                } else if (rect.intersects(Game.getInstance().getMenu().instructions)) {
+                    AudioPlayer.playSound(Audio.SFX_CLICK);    
+                
+                } else if (rect.intersects(Game.getInstance().getMenu().scores)) {
+                    AudioPlayer.playSound(Audio.SFX_CLICK);
+                
+                } else if (rect.intersects(Game.getInstance().getMenu().quit)) {
+                    AudioPlayer.playSound(Audio.SFX_CLICK);    
+                }
+				break;
+			case OPTIONS:
+				break;
+			case PAUSE:
+				break;
+			case QUITTING:
+				break;
+			case SCORES:
+				break;
+			case SPLASH:
+				break;
+			default:
+				break;
+    		}
+	    }
+    }
+
     
     public void mouseReleased(MouseEvent e){
         int mouse = e.getButton();  //used to check what button was clicked
@@ -121,38 +167,38 @@ public class MouseInput extends MouseAdapter {
                 	
                 	// If we released our mouse button while in the bounds main menu's play button, 
                 	// change the games GameState to GAME and set isPressed to false.
-                    if (rect.intersects(MainMenu.play)){
-                        Game.state = GameState.GAME;
+                    if (rect.intersects(Game.getInstance().getMenu().play)){
+                       // Game.state = GameState.GAME;
                         GameConstants.isPressed = false;
                     }else GameConstants.isPressed = false;
                     
                     // If we released our mouse button while in the bounds main menu's options button, 
                 	// change the games GameState to OPTIONS and set isPressed to false.
-                    if (rect.intersects(MainMenu.options)){ 
-                    	Game.state = GameState.OPTIONS;
+                    if (rect.intersects(Game.getInstance().getMenu().options)){ 
+                    	//Game.state = GameState.OPTIONS;
                     	GameConstants.isPressed = false;
                     }else GameConstants.isPressed = false;
                     
                     // If we released our mouse button while in the bounds main menu's instructions button, 
                 	// change the games GameState to INSTRUCTIONS and set isPressed to false.
-                    if (rect.intersects(MainMenu.instructions)){
-                        Game.state = GameState.INSTRUCTIONS;
+                    if (rect.intersects(Game.getInstance().getMenu().instructions)){
+                        //Game.state = GameState.INSTRUCTIONS;
                         GameConstants.isPressed = false;
                     }else GameConstants.isPressed = false;
                     
                     // If we released our mouse button while in the bounds main menu's high scores button, 
                 	// change the games GameState to SCORES and set isPressed to false.
-                    if (rect.intersects(MainMenu.scores)){
-                        Game.state = GameState.SCORES;
+                    if (rect.intersects(Game.getInstance().getMenu().scores)){
+                        //Game.state = GameState.SCORES;
                     	GameConstants.isPressed = false;
             		}else GameConstants.isPressed = false;
                     
                     // If we released our mouse button while in the bounds main menu's quit button, 
                 	// change the games GameState to QUITTING and set isPressed to false.
-                    if (rect.intersects(MainMenu.quit)){
+                    if (rect.intersects(Game.getInstance().getMenu().quit)){
                        // Game.state = GameState.QUITTING;
                     	GameConstants.isPressed = false;
-                    	System.exit(1);
+                    	//System.exit(1);
             		}else GameConstants.isPressed = false;
                     
                     break;
@@ -165,9 +211,7 @@ public class MouseInput extends MouseAdapter {
                     
                 default:
                     break;
-
             }
         }
     }
-
 }

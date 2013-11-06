@@ -43,10 +43,13 @@ import com.spectregames.concentration.libs.GameConstants;
  */
 public class AudioPlayer {
 
+	// A hash map to contain all of our game's sound effects
     private static Map<String, Sound> soundMap = new HashMap<String, Sound>();
- 
+    
+    // A hash map to contain all of our game's music
     private static Map<String, Music> musicMap = new HashMap<String, Music>();
     
+
     
   
     public static void addSound(String key, String path){
