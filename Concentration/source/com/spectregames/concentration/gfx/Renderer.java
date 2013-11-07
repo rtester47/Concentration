@@ -48,14 +48,10 @@ public class Renderer {
 			case CREDITS:
 				break;
 			case EASY_GAME:
-				g.setFont(tempFont);
-				g.setColor(Color.RED);
-				g.drawString("06 CARDS WILL BE DRAWN FOR YOU", GameConstants.CENTER_X -400, GameConstants.CENTER_Y);
+				
 				break;
 			case EXTREME_GAME:
-				g.setFont(tempFont);
-				g.setColor(Color.RED);
-				g.drawString("24 CARDS WILL BE DRAWN FOR YOU", GameConstants.CENTER_X -400, GameConstants.CENTER_Y);
+				
 				break;	
 			case GAME:
 				switch(Game.difficulity){
@@ -83,8 +79,7 @@ public class Renderer {
 				}
 				break;
 			case HARD_GAME:
-				g.setColor(Color.RED);
-				g.drawString("18 CARDS WILL BE DRAWN FOR YOU", GameConstants.CENTER_X -400, GameConstants.CENTER_Y);
+				
 				break;
 			case INSTRUCTIONS:
 				break;
@@ -92,9 +87,7 @@ public class Renderer {
 				Game.getInstance().getMenu().render(g);
 				break;
 			case NORMAL_GAME:
-				g.setFont(tempFont);
-				g.setColor(Color.RED);
-				g.drawString("12 CARDS WILL BE DRAWN FOR YOU", GameConstants.CENTER_X -400, GameConstants.CENTER_Y);
+				
 				break;
 			case OPTIONS:
 				break;

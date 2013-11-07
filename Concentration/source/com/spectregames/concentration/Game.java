@@ -57,7 +57,7 @@ public class Game extends Canvas implements Runnable {
 	private static JFrame frame= new JFrame();
 	private static Game game = new Game();
 	public static GameState state = GameState.MENU;
-	public static GameDifficulity difficulity = GameDifficulity.NORMAL;
+	public static GameDifficulity difficulity = GameDifficulity.EASY;
 	
 	private boolean isRunning = false;
 	private Thread game_thread;
@@ -66,6 +66,7 @@ public class Game extends Canvas implements Runnable {
 	public SplashScreen splash;
 	private Handler handler;
 	private ResourceLoader res;
+	
 		
 	public static Game getInstance(){
 		return game;
@@ -76,6 +77,7 @@ public class Game extends Canvas implements Runnable {
     }
 	
 	public void init(){
+		
 		handler = new Handler();
 		res = new ResourceLoader();
 		res.loadAudio();

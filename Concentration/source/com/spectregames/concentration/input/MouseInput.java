@@ -25,10 +25,8 @@ package com.spectregames.concentration.input;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Random;
-
 import com.spectregames.concentration.utils.ResourceLoader;
-
+import com.spectregames.concentration.utils.UniqueRandoms;
 import com.spectregames.concentration.Game;
 import com.spectregames.concentration.Handler;
 import com.spectregames.concentration.enums.GameState;
@@ -134,8 +132,8 @@ public class MouseInput extends MouseAdapter {
 			case INSTRUCTIONS:
 				break;
 			case MENU:
-				if (rect.intersects(Game.getInstance().getMenu().play)) { //Example, if we click our menu's play button, change the state to GAME
-                    AudioPlayer.playSound(Audio.SFX_CLICK); //make sure you play your sound before changing the game's state
+				if (rect.intersects(Game.getInstance().getMenu().play)) { 
+                    AudioPlayer.playSound(Audio.SFX_CLICK);
                     
                 } else if (rect.intersects(Game.getInstance().getMenu().options)) {
                     AudioPlayer.playSound(Audio.SFX_CLICK);
@@ -183,39 +181,19 @@ public class MouseInput extends MouseAdapter {
                     if (rect.intersects(Game.getInstance().getMenu().play)){
                         Game.state = GameState.GAME;
                         
-                        //generate cards
-                        Random r = new Random();
+                      //generate cards
                         
-                        int j = 0;
-                        
-                        
-                        int[] rowOne = new int[12];
-                        int[] rowTwo = new int[12];
-                        boolean[] rowOneBool = new boolean[25];
-                        
-                        for(int i = 0; i < rowOneBool.length; i++)
-                        	rowOneBool[i] = false;
-                    
-                        
-                        for(int i = 0; i < rowOne.length; i++){
-                        	int typeId = r.nextInt(12)+1;
-                        	while(rowOneBool[typeId]){
-                        		typeId = r.nextInt(12)+1;
-                        		if(rowOneBool[typeId] == false);
-                        	}
-                        	
-                        	rowOne[i] = typeId;
-                        	j=0;
-                        }
+                        UniqueRandoms randp = new UniqueRandoms(GameConstants.cardsToDraw);
+                        int[] cards = new int[GameConstants.cardsToDraw];
                         
                         
-                        int offsetX = 100;
+                        int offsetX = 130;
                         int offsetY = 100;
                         
-                        for(int i = 0; i < rowOne.length; i++){
-                        	handler.addcard(new GameCard(i*90, (GameConstants.CENTER_Y - offsetY), rowOne[i], res));
+                        for (int i = 0; i < GameConstants.cardsToDraw; i++) {
+                        	cards[i] = randp.nextInt();
+                        	handler.addcard(new GameCard((offsetX) + i*90, (GameConstants.CENTER_Y - offsetY), cards[i], res));
                         }
-                        
                         
                         //end of generate cards
                         
