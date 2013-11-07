@@ -64,6 +64,8 @@ public class Game extends Canvas implements Runnable {
 	private Renderer gfx;
 	public Menu menu;
 	public SplashScreen splash;
+	private Handler handler;
+	private ResourceLoader res;
 		
 	public static Game getInstance(){
 		return game;
@@ -74,12 +76,15 @@ public class Game extends Canvas implements Runnable {
     }
 	
 	public void init(){
-		ResourceLoader.loadImages();
-		ResourceLoader.loadAudio();
+		handler = new Handler();
+		res = new ResourceLoader();
+		res.loadAudio();
+		res.loadImages();
+		
 		splash = new SplashScreen();
 		menu = new Menu();
 		gfx = new Renderer();
-		MouseInput mouse = new MouseInput();
+		MouseInput mouse = new MouseInput(handler, res);
 	    this.addMouseListener(mouse);
 	    this.addMouseMotionListener(mouse);
 	    
@@ -88,7 +93,7 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	public void tick(){
-		
+		handler.tick();
 	}
 	
 	public void render(){
@@ -105,6 +110,8 @@ public class Game extends Canvas implements Runnable {
 		///////////////////////////////////////////////////
 		gfx.renderBackground(g);
 		gfx.renderForeground(g);
+		
+		handler.render(g);
 		
 		g.dispose();
 		bs.show();

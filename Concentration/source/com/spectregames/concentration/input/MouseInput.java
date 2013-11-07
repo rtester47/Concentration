@@ -25,9 +25,14 @@ package com.spectregames.concentration.input;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
+
+import com.spectregames.concentration.utils.ResourceLoader;
 
 import com.spectregames.concentration.Game;
+import com.spectregames.concentration.Handler;
 import com.spectregames.concentration.enums.GameState;
+import com.spectregames.concentration.gfx.GameCard;
 import com.spectregames.concentration.libs.Audio;
 import com.spectregames.concentration.libs.GameConstants;
 import com.spectregames.concentration.utils.AudioPlayer;
@@ -47,6 +52,13 @@ public class MouseInput extends MouseAdapter {
     
     public static int MOUSE_X, MOUSE_Y;
     public static Rectangle MOUSE = new Rectangle(1,1,1,1);
+    Handler handler;
+    ResourceLoader res;
+    
+    public MouseInput(Handler handler, ResourceLoader res){
+    	this.handler = handler;
+    	this.res =  res;
+    }
   
  
     @Override
@@ -170,6 +182,43 @@ public class MouseInput extends MouseAdapter {
                 	// change the games GameState to GAME and set isPressed to false.
                     if (rect.intersects(Game.getInstance().getMenu().play)){
                         Game.state = GameState.GAME;
+                        
+                        //generate cards
+                        Random r = new Random();
+                        
+                        int j = 0;
+                        
+                        
+                        int[] rowOne = new int[12];
+                        int[] rowTwo = new int[12];
+                        boolean[] rowOneBool = new boolean[25];
+                        
+                        for(int i = 0; i < rowOneBool.length; i++)
+                        	rowOneBool[i] = false;
+                    
+                        
+                        for(int i = 0; i < rowOne.length; i++){
+                        	int typeId = r.nextInt(12)+1;
+                        	while(rowOneBool[typeId]){
+                        		typeId = r.nextInt(12)+1;
+                        		if(rowOneBool[typeId] == false);
+                        	}
+                        	
+                        	rowOne[i] = typeId;
+                        	j=0;
+                        }
+                        
+                        
+                        int offsetX = 100;
+                        int offsetY = 100;
+                        
+                        for(int i = 0; i < rowOne.length; i++){
+                        	handler.addcard(new GameCard(i*90, (GameConstants.CENTER_Y - offsetY), rowOne[i], res));
+                        }
+                        
+                        
+                        //end of generate cards
+                        
                         GameConstants.isPressed = false;
                     }else GameConstants.isPressed = false;
                     

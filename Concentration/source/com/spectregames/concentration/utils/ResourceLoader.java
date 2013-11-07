@@ -22,6 +22,7 @@
 */
 package com.spectregames.concentration.utils;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import com.spectregames.concentration.libs.Audio;
@@ -41,6 +42,10 @@ import com.spectregames.concentration.libs.Images;
 public class ResourceLoader {
 	
 	private static BufferedImageLoader imageLoader = new BufferedImageLoader();
+	private static BufferedImage sprite_sheet = null;
+	public static SpriteSheet ss;
+	
+	public static BufferedImage[] card = new BufferedImage[25];
 	
 	// Loads all of the games image assets.
 	public static void loadImages(){
@@ -49,59 +54,50 @@ public class ResourceLoader {
 		try{
 			// Images for the Splash Screens
 			Images.splash_screen = imageLoader.loadImage(GameConstants.SPLASH + "splash.png");
-
+			
+			// Default Theme for Card Sprite sheet.
+			sprite_sheet = imageLoader.loadImage(GameConstants.THEMES + "spectre_games.png");
+			ss = new SpriteSheet(sprite_sheet);
 			
 			// Images for the Main Menu.
-			Images.main_menu_title = imageLoader.loadImage(GameConstants.MAINMENU + "main_menu_title.png"); // Title Image
-			Images.main_menu_background = imageLoader.loadImage(GameConstants.MAINMENU + "main_menu.png"); // Background Image for main menu.
-			Images.main_menu_play_hover = imageLoader.loadImage(GameConstants.MAINMENU + "play_hover_state.png"); // Play Hover Image
+			Images.main_menu_title = imageLoader.loadImage(GameConstants.MAINMENU + "main_menu_title.png");
+			Images.main_menu_background = imageLoader.loadImage(GameConstants.MAINMENU + "main_menu.png"); 
+			Images.main_menu_play_hover = imageLoader.loadImage(GameConstants.MAINMENU + "play_hover_state.png");
 			Images.main_menu_play_normal = imageLoader.loadImage(GameConstants.MAINMENU + "play_normal_state.png");
 			Images.main_menu_play_pressed = imageLoader.loadImage(GameConstants.MAINMENU + "play_pressed_state.png");
 			Images.main_menu_options_hover = imageLoader.loadImage(GameConstants.MAINMENU + "options_hover_state.png");
 			Images.main_menu_options_normal = imageLoader.loadImage(GameConstants.MAINMENU + "options_normal_state.png");
+			Images.main_menu_options_pressed = imageLoader.loadImage(GameConstants.MAINMENU + "options_pressed_state.png");
+			Images.main_menu_instructions_hover = imageLoader.loadImage(GameConstants.MAINMENU + "instructions_hover_state.png");
+			Images.main_menu_instructions_normal = imageLoader.loadImage(GameConstants.MAINMENU + "instructions_normal_state.png");
+			Images.main_menu_instructions_pressed = imageLoader.loadImage(GameConstants.MAINMENU + "instructions_pressed_state.png");
+			Images.main_menu_high_scores_hover = imageLoader.loadImage(GameConstants.MAINMENU + "high_scores_hover_state.png");
+			Images.main_menu_high_scores_normal = imageLoader.loadImage(GameConstants.MAINMENU + "high_scores_normal_state.png");
+			Images.main_menu_high_scores_pressed = imageLoader.loadImage(GameConstants.MAINMENU + "high_scores_pressed_state.png");
+			Images.main_menu_quit_hover = imageLoader.loadImage(GameConstants.MAINMENU + "quit_hover_state.png");
+			Images.main_menu_quit_normal = imageLoader.loadImage(GameConstants.MAINMENU + "quit_normal_state.png");
+			Images.main_menu_quit_pressed = imageLoader.loadImage(GameConstants.MAINMENU + "quit_pressed_state.png");
+
+			// Images for the Options Menu.
+			
+			
 			
 		} catch(IOException e){ e.printStackTrace(); }
 		
+		loadSprites();
 		
-		try{
-			Images.main_menu_options_pressed = imageLoader.loadImage(GameConstants.MAINMENU + "options_pressed_state.png");
-		} catch(IOException e){ e.printStackTrace(); }
+		}
+
+	
+	public static void loadSprites(){
+		/**
+		 * 0 = back card
+		 * 1 - 24 different card face
+		 */
 		
-		try{
-			Images.main_menu_instructions_hover = imageLoader.loadImage(GameConstants.MAINMENU + "instructions_hover_state.png");
-		} catch(IOException e){ e.printStackTrace(); }
-		
-		try{
-			Images.main_menu_instructions_normal = imageLoader.loadImage(GameConstants.MAINMENU + "instructions_normal_state.png");
-		} catch(IOException e){ e.printStackTrace(); }
-		
-		try{
-			Images.main_menu_instructions_pressed = imageLoader.loadImage(GameConstants.MAINMENU + "instructions_pressed_state.png");
-		} catch(IOException e){ e.printStackTrace(); }
-		
-		try{
-			Images.main_menu_high_scores_hover = imageLoader.loadImage(GameConstants.MAINMENU + "high_scores_hover_state.png");
-		} catch(IOException e){ e.printStackTrace(); }
-		
-		try{
-			Images.main_menu_high_scores_normal = imageLoader.loadImage(GameConstants.MAINMENU + "high_scores_normal_state.png");
-		} catch(IOException e){ e.printStackTrace(); }
-		
-		try{
-			Images.main_menu_high_scores_pressed = imageLoader.loadImage(GameConstants.MAINMENU + "high_scores_pressed_state.png");
-		} catch(IOException e){ e.printStackTrace(); }
-		
-		try{
-			Images.main_menu_quit_hover = imageLoader.loadImage(GameConstants.MAINMENU + "quit_hover_state.png");
-		} catch(IOException e){ e.printStackTrace(); }
-		
-		try{
-			Images.main_menu_quit_normal = imageLoader.loadImage(GameConstants.MAINMENU + "quit_normal_state.png");
-		} catch(IOException e){ e.printStackTrace(); }
-		
-		try{
-			Images.main_menu_quit_pressed = imageLoader.loadImage(GameConstants.MAINMENU + "quit_pressed_state.png");
-		} catch(IOException e){ e.printStackTrace(); }
+		for(int i = 0; i < card.length; i++){
+			card[i] = ss.grabImage(i+1, 1, 80, 80);
+		}
 	}
 	
 	// Loads all of the games audio assets.
@@ -117,5 +113,4 @@ public class ResourceLoader {
        // Background Music.
        //AudioPlayer.addMusic(Audio.BGM_HOTS, "heart_of_the_sea.aif");
     }
-
 }
