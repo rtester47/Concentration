@@ -27,7 +27,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import com.spectregames.concentration.Game;
-import com.spectregames.concentration.enums.GameState;
 import com.spectregames.concentration.libs.GameConstants;
 
 /**
@@ -42,44 +41,28 @@ import com.spectregames.concentration.libs.GameConstants;
  */
 public class Renderer {
 	
+
+	
 	public void renderBackground(Graphics g){
 		Font tempFont = new Font("Arial", Font.BOLD, 44);
 		switch(Game.state){
 			case CREDITS:
 				break;
 			case EASY_GAME:
-				
+				g.setFont(tempFont);
+				g.setColor(Color.RED);
+				g.drawString("EASY GAME", GameConstants.CENTER_X -275, GameConstants.CENTER_Y - 300);
 				break;
 			case EXTREME_GAME:
-				
+				g.setFont(tempFont);
+				g.setColor(Color.RED);
+				g.drawString("EXTREME GAME", GameConstants.CENTER_X -275, GameConstants.CENTER_Y - 300);
 				break;	
 			case GAME:
-				switch(Game.difficulity){
-				case EASY:
-					GameConstants.cardsToDraw = 6;
-					Game.state = GameState.EASY_GAME;
-					break;
-				case EXTREME:
-					GameConstants.cardsToDraw = 24;
-					Game.state = GameState.EXTREME_GAME;
-					break;
-				case HARD:
-					GameConstants.cardsToDraw = 18;
-					Game.state = GameState.HARD_GAME;
-					break;
-				case NORMAL:
-					GameConstants.cardsToDraw = 12;
-					Game.state = GameState.NORMAL_GAME;
-					break;
-				default:
-					g.setFont(tempFont);
-					g.setColor(Color.RED);
-					g.drawString("UNKNOWN GAMEDIFFICULITY", GameConstants.CENTER_X -400, GameConstants.CENTER_Y);
-					break;
-				}
-				break;
 			case HARD_GAME:
-				
+				g.setFont(tempFont);
+				g.setColor(Color.RED);
+				g.drawString("HARD GAME", GameConstants.CENTER_X -275, GameConstants.CENTER_Y - 300);
 				break;
 			case INSTRUCTIONS:
 				break;
@@ -87,7 +70,9 @@ public class Renderer {
 				Game.getInstance().getMenu().render(g);
 				break;
 			case NORMAL_GAME:
-				
+				g.setFont(tempFont);
+				g.setColor(Color.RED);
+				g.drawString("NORMAL GAME", GameConstants.CENTER_X -275, GameConstants.CENTER_Y - 300);
 				break;
 			case OPTIONS:
 				break;

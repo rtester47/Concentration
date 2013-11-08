@@ -22,9 +22,12 @@
 */
 package com.spectregames.concentration.input;
 
+import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import com.spectregames.concentration.utils.ResourceLoader;
 import com.spectregames.concentration.utils.UniqueRandoms;
 import com.spectregames.concentration.Game;
@@ -46,10 +49,12 @@ import com.spectregames.concentration.utils.AudioPlayer;
  *	
  */
 
+@SuppressWarnings("unused")
 public class MouseInput extends MouseAdapter {
     
     public static int MOUSE_X, MOUSE_Y;
     public static Rectangle MOUSE = new Rectangle(1,1,1,1);
+    ArrayList<int[]> al = new ArrayList<int[]>();
     Handler handler;
     ResourceLoader res;
     
@@ -180,24 +185,94 @@ public class MouseInput extends MouseAdapter {
                 	// change the games GameState to GAME and set isPressed to false.
                     if (rect.intersects(Game.getInstance().getMenu().play)){
                         Game.state = GameState.GAME;
-                        
-                      //generate cards
-                        
-                        UniqueRandoms randp = new UniqueRandoms(GameConstants.cardsToDraw);
-                        int[] cards = new int[GameConstants.cardsToDraw];
-                        
-                        
+                        GameConstants.isPressed = false;
+                     
                         int offsetX = 130;
                         int offsetY = 100;
                         
-                        for (int i = 0; i < GameConstants.cardsToDraw; i++) {
-                        	cards[i] = randp.nextInt();
-                        	handler.addcard(new GameCard((offsetX) + i*90, (GameConstants.CENTER_Y - offsetY), cards[i], res));
-                        }
+        				switch(Game.difficulity){
+        				case EASY:
+        					
+        					GameConstants.cardsToDraw = 6;
+        					
+        					//generate cards
+        					UniqueRandoms randpEA = new UniqueRandoms(GameConstants.cardsToDraw);
+                            int[] cardsEA = new int[GameConstants.cardsToDraw];
+                            System.out.print("The Picks are: ");
+                            
+                            for (int i = 0; i < GameConstants.cardsToDraw; i++) {
+                            	cardsEA[i] = randpEA.nextInt();
+                            	al.add(cardsEA);
+                            	System.out.print(cardsEA[i] + ", ");
+                            	
+                            	handler.addcard(new GameCard((offsetX) + i*90, (GameConstants.CENTER_Y - offsetY), cardsEA[i], res));
+                            }
+                            //end of generate cards
+                            System.out.print("\n");
+                            System.out.println("Contents of al: " + al);
+        					Game.state = GameState.EASY_GAME;
+        					break;
+        				
+        				case EXTREME:
+
+        					GameConstants.cardsToDraw = 24;
+        					
+        					//generate cards
+           					UniqueRandoms randpEX = new UniqueRandoms(GameConstants.cardsToDraw);
+                            int[] cardsEX = new int[GameConstants.cardsToDraw];
+     
+                            for (int i = 0; i < GameConstants.cardsToDraw; i++) {
+                            	cardsEX[i] = randpEX.nextInt();
+                            	System.out.print(cardsEX[i] + ", ");
+                            	handler.addcard(new GameCard((offsetX) + i*90, (GameConstants.CENTER_Y - offsetY), cardsEX[i], res));
+                            }
+                            //end of generate cards
+                            
+        					Game.state = GameState.EXTREME_GAME;
+        					break;
+        				
+        				case HARD:
+        				
+        					GameConstants.cardsToDraw = 18;
+        					
+        					//generate cards
+        					UniqueRandoms randpHA = new UniqueRandoms(GameConstants.cardsToDraw);
+                            int[] cardsHA = new int[GameConstants.cardsToDraw];
+     
+                            for (int i = 0; i < GameConstants.cardsToDraw; i++) {
+                            	cardsHA[i] = randpHA.nextInt();
+                            	System.out.print(cardsHA[i] + ", ");
+                            	handler.addcard(new GameCard((offsetX) + i*90, (GameConstants.CENTER_Y - offsetY), cardsHA[i], res));
+                            }
+                            //end of generate cards
+        					
+        					Game.state = GameState.HARD_GAME;
+        					break;
+        				case NORMAL:
+        					GameConstants.cardsToDraw = 12;
+        					
+        					//generate cards
+        					UniqueRandoms randpNO = new UniqueRandoms(GameConstants.cardsToDraw);
+                            int[] cardsNO = new int[GameConstants.cardsToDraw];
+                            
+                            for (int i = 0; i < GameConstants.cardsToDraw; i++) {
+                            	cardsNO[i] = randpNO.nextInt();
+                            	System.out.print(cardsNO[i] + ", ");
+                            	handler.addcard(new GameCard((offsetX) + i*90, (GameConstants.CENTER_Y - offsetY), cardsNO[i], res));
+                            }
+                            //end of generate cards
+        					
+        					Game.state = GameState.NORMAL_GAME;
+        					break;
+        				default:
+ 
+        				}
+        				break;
+        				
                         
-                        //end of generate cards
-                        
-                        GameConstants.isPressed = false;
+ 
+                       
+                       
                     }else GameConstants.isPressed = false;
                     
                     // If we released our mouse button while in the bounds main menu's options button, 
@@ -226,6 +301,7 @@ public class MouseInput extends MouseAdapter {
                     if (rect.intersects(Game.getInstance().getMenu().quit)){
                         Game.state = GameState.QUITTING;
                     	GameConstants.isPressed = false;
+                    	System.out.println("Program Ending");
                     	System.exit(1);
             		}else GameConstants.isPressed = false;
                     

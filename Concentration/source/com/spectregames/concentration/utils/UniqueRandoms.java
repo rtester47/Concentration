@@ -22,6 +22,8 @@
 */
 package com.spectregames.concentration.utils;
 
+import com.spectregames.concentration.libs.GameConstants;
+
 /**
  * Project Name: Concentration
  * Package Name: com.spectregames.concentration.utils
@@ -42,6 +44,7 @@ public class UniqueRandoms {
 	    MAX_VALUE = startCounter;
 	    numsLeft = startCounter;
 	    chooser = new int[MAX_VALUE];
+	    System.out.println("Cards to draw: " + GameConstants.cardsToDraw);
 	    for (int i = 1; i <= chooser.length; i++) {
 	        chooser[i-1] = i;
 	    }
@@ -53,7 +56,7 @@ public class UniqueRandoms {
 	    }
 	    int a = chooser[(int)(Math.random() * MAX_VALUE)];
 	    if(a == 0) {
-	        return this.nextInt();
+	    	return this.nextInt();
 	    }
 	    chooser[a-1] = 0;
 	    numsLeft--;
