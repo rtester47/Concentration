@@ -27,6 +27,7 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import com.spectregames.concentration.utils.ResourceLoader;
 import com.spectregames.concentration.utils.UniqueRandoms;
@@ -54,7 +55,7 @@ public class MouseInput extends MouseAdapter {
     
     public static int MOUSE_X, MOUSE_Y;
     public static Rectangle MOUSE = new Rectangle(1,1,1,1);
-    ArrayList<int[]> al = new ArrayList<int[]>();
+    ArrayList<Integer> al = new ArrayList<Integer>();
     Handler handler;
     ResourceLoader res;
     
@@ -202,7 +203,7 @@ public class MouseInput extends MouseAdapter {
                             
                             for (int i = 0; i < GameConstants.cardsToDraw; i++) {
                             	cardsEA[i] = randpEA.nextInt();
-                            	al.add(cardsEA);
+                            	al.add(new Integer(cardsEA[i]));
                             	System.out.print(cardsEA[i] + ", ");
                             	
                             	handler.addcard(new GameCard((offsetX) + i*90, (GameConstants.CENTER_Y - offsetY), cardsEA[i], res));
@@ -210,7 +211,8 @@ public class MouseInput extends MouseAdapter {
                             //end of generate cards
                             System.out.print("\n");
                             System.out.println("Contents of al: " + al);
-        					Game.state = GameState.EASY_GAME;
+                            
+                            Game.state = GameState.EASY_GAME;
         					break;
         				
         				case EXTREME:
