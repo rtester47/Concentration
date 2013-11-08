@@ -44,7 +44,7 @@ public class UniqueRandoms {
 	    MAX_VALUE = startCounter;
 	    numsLeft = startCounter;
 	    chooser = new int[MAX_VALUE];
-	    System.out.println("Cards to draw: " + GameConstants.cardsToDraw);
+
 	    for (int i = 1; i <= chooser.length; i++) {
 	        chooser[i-1] = i;
 	    }

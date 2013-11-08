@@ -22,15 +22,12 @@
 */
 package com.spectregames.concentration.input;
 
-import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 
-import com.spectregames.concentration.utils.ResourceLoader;
-import com.spectregames.concentration.utils.UniqueRandoms;
 import com.spectregames.concentration.Game;
 import com.spectregames.concentration.Handler;
 import com.spectregames.concentration.enums.GameState;
@@ -38,6 +35,8 @@ import com.spectregames.concentration.gfx.GameCard;
 import com.spectregames.concentration.libs.Audio;
 import com.spectregames.concentration.libs.GameConstants;
 import com.spectregames.concentration.utils.AudioPlayer;
+import com.spectregames.concentration.utils.ResourceLoader;
+import com.spectregames.concentration.utils.UniqueRandoms;
 
 /**
  *	Project: Concentration
@@ -56,6 +55,10 @@ public class MouseInput extends MouseAdapter {
     public static int MOUSE_X, MOUSE_Y;
     public static Rectangle MOUSE = new Rectangle(1,1,1,1);
     ArrayList<Integer> al = new ArrayList<Integer>();
+    UniqueRandoms randp;
+    UniqueRandoms randpd;
+    int[] cards;
+    
     Handler handler;
     ResourceLoader res;
     
@@ -194,75 +197,106 @@ public class MouseInput extends MouseAdapter {
         				switch(Game.difficulity){
         				case EASY:
         					
-        					GameConstants.cardsToDraw = 6;
-        					
         					//generate cards
-        					UniqueRandoms randpEA = new UniqueRandoms(GameConstants.cardsToDraw);
-                            int[] cardsEA = new int[GameConstants.cardsToDraw];
-                            System.out.print("The Picks are: ");
+        					randp = new UniqueRandoms(6);
+        					randpd = new UniqueRandoms(6);
+                            cards = new int[12];
                             
-                            for (int i = 0; i < GameConstants.cardsToDraw; i++) {
-                            	cardsEA[i] = randpEA.nextInt();
-                            	al.add(new Integer(cardsEA[i]));
-                            	System.out.print(cardsEA[i] + ", ");
-                            	
-                            	handler.addcard(new GameCard((offsetX) + i*90, (GameConstants.CENTER_Y - offsetY), cardsEA[i], res));
-                            }
+                               	for (int i = 0; i < 6; i++) {
+                            		cards[i] = randp.nextInt();
+                            		al.add(new Integer(cards[i]));
+                            		System.out.print(cards[i] + ", ");
+                            		//Collections.shuffle(al);
+                               		handler.addcard(new GameCard((offsetX) + i*100, (GameConstants.CENTER_Y - offsetY), cards[i], res));
+                            	}
+                               	for (int i = 0; i < 6; i++) {
+                            		cards[i] = randpd.nextInt();
+                            		al.add(new Integer(cards[i]));
+                            		System.out.print(cards[i] + ", ");
+                            		//Collections.shuffle(al);
+                            		handler.addcard(new GameCard((offsetX) + i*100, (GameConstants.CENTER_Y), cards[i], res));
+                            		
+                            	}
                             //end of generate cards
                             System.out.print("\n");
                             System.out.println("Contents of al: " + al);
-                            
+                    		
                             Game.state = GameState.EASY_GAME;
         					break;
         				
         				case EXTREME:
 
-        					GameConstants.cardsToDraw = 24;
-        					
         					//generate cards
-           					UniqueRandoms randpEX = new UniqueRandoms(GameConstants.cardsToDraw);
-                            int[] cardsEX = new int[GameConstants.cardsToDraw];
-     
-                            for (int i = 0; i < GameConstants.cardsToDraw; i++) {
-                            	cardsEX[i] = randpEX.nextInt();
-                            	System.out.print(cardsEX[i] + ", ");
-                            	handler.addcard(new GameCard((offsetX) + i*90, (GameConstants.CENTER_Y - offsetY), cardsEX[i], res));
-                            }
+        					randp = new UniqueRandoms(24);
+        					randpd = new UniqueRandoms(24);
+                            cards = new int[48];
+                            
+                               	for (int i = 0; i < 24; i++) {
+                            		cards[i] = randp.nextInt();
+                            		al.add(new Integer(cards[i]));
+                            		System.out.print(cards[i] + ", ");
+                            		//handler.addcard(new GameCard((offsetX) + i*90, (GameConstants.CENTER_Y - offsetY), cards[i], res));
+                            	}
+                               	for (int i = 0; i < 24; i++) {
+                            		cards[i] = randpd.nextInt();
+                            		al.add(new Integer(cards[i]));
+                            		System.out.print(cards[i] + ", ");
+                            		//handler.addcard(new GameCard((offsetX) + i*90, (GameConstants.CENTER_Y), cards[i], res));
+                            	}
                             //end of generate cards
+                            System.out.print("\n");
+                            System.out.println("Contents of al: " + al);
                             
         					Game.state = GameState.EXTREME_GAME;
         					break;
         				
         				case HARD:
         				
-        					GameConstants.cardsToDraw = 18;
-        					
         					//generate cards
-        					UniqueRandoms randpHA = new UniqueRandoms(GameConstants.cardsToDraw);
-                            int[] cardsHA = new int[GameConstants.cardsToDraw];
-     
-                            for (int i = 0; i < GameConstants.cardsToDraw; i++) {
-                            	cardsHA[i] = randpHA.nextInt();
-                            	System.out.print(cardsHA[i] + ", ");
-                            	handler.addcard(new GameCard((offsetX) + i*90, (GameConstants.CENTER_Y - offsetY), cardsHA[i], res));
-                            }
+        					randp = new UniqueRandoms(18);
+        					randpd = new UniqueRandoms(18);
+                            cards = new int[36];
+                            
+                               	for (int i = 0; i < 18; i++) {
+                            		cards[i] = randp.nextInt();
+                            		al.add(new Integer(cards[i]));
+                            		System.out.print(cards[i] + ", ");
+                            		//handler.addcard(new GameCard((offsetX) + i*90, (GameConstants.CENTER_Y - offsetY), cards[i], res));
+                            	}
+                               	for (int i = 0; i < 18; i++) {
+                            		cards[i] = randpd.nextInt();
+                            		al.add(new Integer(cards[i]));
+                            		System.out.print(cards[i] + ", ");
+                            		//handler.addcard(new GameCard((offsetX) + i*90, (GameConstants.CENTER_Y), cards[i], res));
+                            	}
                             //end of generate cards
-        					
+                            System.out.print("\n");
+                            System.out.println("Contents of al: " + al);
+                            
         					Game.state = GameState.HARD_GAME;
         					break;
         				case NORMAL:
-        					GameConstants.cardsToDraw = 12;
-        					
+        					        					
         					//generate cards
-        					UniqueRandoms randpNO = new UniqueRandoms(GameConstants.cardsToDraw);
-                            int[] cardsNO = new int[GameConstants.cardsToDraw];
+        					randp = new UniqueRandoms(12);
+        					randpd = new UniqueRandoms(12);
+                            cards = new int[24];
                             
-                            for (int i = 0; i < GameConstants.cardsToDraw; i++) {
-                            	cardsNO[i] = randpNO.nextInt();
-                            	System.out.print(cardsNO[i] + ", ");
-                            	handler.addcard(new GameCard((offsetX) + i*90, (GameConstants.CENTER_Y - offsetY), cardsNO[i], res));
-                            }
+                               	for (int i = 0; i < 12; i++) {
+                            		cards[i] = randp.nextInt();
+                            		al.add(new Integer(cards[i]));
+                            		System.out.print(cards[i] + ", ");
+                            		//handler.addcard(new GameCard((offsetX) + i*90, (GameConstants.CENTER_Y - offsetY), cards[i], res));
+                            	}
+                               	for (int i = 0; i < 12; i++) {
+                            		cards[i] = randpd.nextInt();
+                            		al.add(new Integer(cards[i]));
+                            		System.out.print(cards[i] + ", ");
+                            		//handler.addcard(new GameCard((offsetX) + i*90, (GameConstants.CENTER_Y), cards[i], res));
+                            	}
                             //end of generate cards
+                            System.out.print("\n");
+                            System.out.println("Contents of al: " + al);
         					
         					Game.state = GameState.NORMAL_GAME;
         					break;

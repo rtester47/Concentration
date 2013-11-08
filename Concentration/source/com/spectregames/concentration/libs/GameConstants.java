@@ -39,8 +39,13 @@ public class GameConstants {
 	public static final int CENTER_X = WIDTH / 2;
 	public static final int CENTER_Y = HEIGHT / 2;
 	
-	public static int cardsToDraw = 12;
+	// Sets up the default values when the game is first ran.
+	public static final String DEFAULT_THEME = "Spectre Games";
+	public static final String DEFAULT_DIFFICULTY = "NORMAL";
+	public static final int DEFAULT_SFX_VOLUME = 100;
+	public static final int DEFAULT_BGM_VOLUME = 100;
 	
+	// Sets the title of the game.
 	public static final String TITLE = "Concentration";
 		
 	
